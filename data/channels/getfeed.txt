@@ -25,3 +25,80 @@ See which vehicles have the highest and lowest car depreciation in 2026, from Po
 
 [📜📜📜**본문보기**📜📜📜](https://blog.naver.com/orangeshirts/224396410173)
 ※※※채널 내 모든 내용은 부정확할 가능성 있고, 투자책임 없음. 최종 판단은 직접 하시오.※※※
+
+[2026-09-08 00:48] 오픈AI가 발표한 GPT-6 Astra는 어떤 수준일까?
+
+📝 핵심적 본문 요약
+오픈AI가 2026년 9월 3일 6세대 모델 GPT-6 Astra를 발표했다. 이번 모델은 AI가 AI를 훈련하는 방식으로 개발됐으며, 사람의 개입을 최소화했다. GPT-6는 컴퓨터를 직접 조작해 작업을 끝까지 수행하는 에이전트 기능에 초점을 맞췄다. 오픈AI는 벤치마크에서 높은 점수를 기록했다고 밝혔으나, 일부 점수는 자체 채점 결과라는 반론이 있다. 실제 독립 기관 평가에서는 경쟁사 모델에 뒤처지는 것으로 나타났다.  (#메르 #ranto28)
+
+[📜📜📜**원문보기**📜📜📜](https://blog.naver.com/ranto28/224403735059)
+✨(In)sight
+오픈AI의 GPT-6 Astra는 에이전트 기능과 보안 능력에서 두각을 나타내지만, 종합 성능에서는 경쟁사 클로드의 파이블 5.1에 뒤처지는 것으로 평가된다. 오픈AI가 제시한 자체 벤치마크 점수는 일부 조정된 방식으로 측정되어 신뢰성에 의문이 제기된다. 이번 모델은 AGI 도달 여부보다는 상업적 파트너십과 투자 유치에 초점을 맞춘 전략적 발표로 보인다. AI 에이전트 시장에서 경쟁이 심화되는 가운데, 기술력보다는 실제 활용성과 검증된 성능이 관건이 될 전망이다.
+
+#GPT6 #오픈AI #AI에이전트 #클로드 #AGI
+
+※우라가 오지 않으면 그것은 인사이트가 아니다.
+※※※채널 내 모든 내용은 부정확할 가능성 있고, 투자책임 없음. 최종 판단은 직접 하시오.※※※
+
+[2026-09-08 00:51] OpenAI의 GPT-6 Astra 모델이 24시간 만에 Portal 게임을 자율적 완료, 소요된 비용은 단 571달러(토큰)
+
+📝 핵심적 본문 요약
+OpenAI의 GPT-6 Astra가 Valve의 3D 퍼즐 게임 Portal을 자율적으로 클리어하는 실험이 진행되었다. 이 과정에서 3,336회의 툴 호출이 발생했으며, API 비용은 571.18달러로 추산된다. 실험자는 모델이 게임을 이해하고 해결책을 계획하는 능력을 보여주었다고 평가했다.  (#천상천하 #jkhan012)
+
+[📜📜📜**원문보기**📜📜📜](https://blog.naver.com/jkhan012/224404237215)
+✨(In)sight
+GPT-6 Astra의 포털 클리어는 AI가 텍스트 처리에 머물지 않고, 시각적 이해와 추론을 결합해 복잡한 문제를 해결하는 수준까지 도달했음을 보여준다. 이는 기존 LLM과 달리 단순 패턴 인식을 넘어, 장기적인 계획 수립과 도구 사용 능력을 갖추었음을 시사한다. AI 에이전트 시장에서 차별화된 성능을 입증한 셈이며, 게임뿐 아니라 로봇 제어나 자율 시스템에도 적용 가능성이 높다. 따라서 이번 성과는 AI 에이전트의 상용화 가능성을 높이는 분기점으로 평가된다.
+
+#GPT6Astra #AI #게임 #자율에이전트 #Portal
+
+※우라가 오지 않으면 그것은 인사이트가 아니다.
+※※※채널 내 모든 내용은 부정확할 가능성 있고, 투자책임 없음. 최종 판단은 직접 하시오.※※※
+
+[2026-09-08 01:27] “AI는 무수한 위성사진에서 의미 있는 변화 신속 탐지하는 수단”
+
+📝 핵심적 본문 요약
+아이싸이는 SAR 위성을 100kg 이하로 소형화하고 대량생산 체제를 갖춘 핀란드 우주 정보 기업이다. AI 기반 탐지 시스템을 통해 위성 영상에서 선박, 항공기, 차량을 자동으로 식별하며 정확도는 90% 이상이다. 우크라이나 전쟁에서 존재감을 키웠고, 최근 기업가치 100억 유로를 인정받았다.  (#천상천하 #jkhan012)
+
+[📜📜📜**원문보기**📜📜📜](https://blog.naver.com/jkhan012/224404246281)
+✨(In)sight
+위성 산업의 경쟁력이 해상도에서 정보 추출 속도로 이동하고 있다. 아이싸이는 SAR 위성의 소형화와 대량생산으로 관측 빈도를 높이고, AI 분석으로 데이터를 신속히 정보로 전환한다. 이는 기존 광학위성의 한계를 극복하고 국방·재난 대응 등에서 독립적인 의사결정을 지원한다. 한국도 425사업을 통해 독자적인 우주 정보 역량을 강화하고 있으며, 아이싸이와의 협력은 기술적 자립과 정보 주권 확보에 중요한 기회가 될 수 있다.
+
+#아이싸이 #SAR위성 #AI분석 #우주정보 #정보주권
+
+※우라가 오지 않으면 그것은 인사이트가 아니다.
+※※※채널 내 모든 내용은 부정확할 가능성 있고, 투자책임 없음. 최종 판단은 직접 하시오.※※※
+
+[2026-09-08 01:27] 삼성 파운드리, HBM4 확대 총력…4나노 캐파 절반이 '베이스 다이'
+
+📝 핵심적 본문 요약
+삼성전자 파운드리 4나노 공정에서 HBM4용 베이스 다이 양산 비중이 50%를 돌파했다. 하반기 엔비디아 등 글로벌 빅테크향 HBM4 공급 확대에 선제 대응하기 위한 조치다. 3분기부터 HBM4 공급을 본격 확대할 계획이다.  (#천상천하 #jkhan012)
+
+[📜📜📜**원문보기**📜📜📜](https://blog.naver.com/jkhan012/224404240615)
+✨(In)sight
+삼성전자는 파운드리 4나노 생산능력 중 절반 이상을 HBM4 베이스 다이에 할당하며 하반기 본격적인 공급 확대에 나섰다. 이는 엔비디아 등 AI 가속기용 HBM 수요 급증에 대응한 선제적 조치다. SK하이닉스와 경쟁에서 점유율을 높이기 위한 전략으로, 4나노 공정 기반 베이스 다이는 경쟁사 대비 기술 우위를 제공한다. 올해 3분기 HBM4 매출은 전분기 대비 3배 이상 성장할 것으로 전망된다.
+
+#삼성전자 #HBM4 #파운드리 #베이스다이 #AI반도체
+
+※우라가 오지 않으면 그것은 인사이트가 아니다.
+※※※채널 내 모든 내용은 부정확할 가능성 있고, 투자책임 없음. 최종 판단은 직접 하시오.※※※
+
+[2026-09-08 01:45] [Visualcapitalist] 미국 최대 미식축구 경기장들은 NFL에 있지 않다
+The Biggest U.S. Football Stadiums Aren’t in the NFL
+
+[📜📜📜**본문보기**📜📜📜](https://www.visualcapitalist.com/sp/ter02-the-biggest-u-s-football-stadiums/)
+미국에서 가장 큰 미식축구 경기장들의 수용 인원을 비교하고, 대학 경기장이 왜 그렇게 더 많은 팬을 수용할 수 있는지 알아보세요.
+See how the biggest football stadiums in America compare by capacity, and why college venues can pack in so many more fans.
+
+[2026-09-08 02:28] [Visualcapitalist] 순위: 세계에서 가장 많은 나무 덮개를 가진 도시들
+Ranked: The World’s Cities With the Most Tree Coverage
+
+[📜📜📜**본문보기**📜📜📜](https://www.visualcapitalist.com/ranked-the-worlds-cities-with-the-most-tree-coverage/)
+어느 글로벌 도시들이 거리 수준의 가로수 피복이 가장 많은지 알아보고, 도시 계획이 어떻게 그들의 거리를 푸르게 유지하는 데 도움을 주는지 살펴보세요.
+Discover which global cities have the most street-level tree cover, and how urban planning helps keep their streets green.
+
+[2026-09-08 04:34] [Visualcapitalist] 내용 없음
+Ranked: Countries With the Toughest Driving Tests
+
+[📜📜📜**본문보기**📜📜📜](https://www.visualcapitalist.com/ranked-countries-with-the-toughest-driving-tests/)
+어느 나라의 운전 면허 필기시험이 가장 어려울까요? 전 세계에서 운전자들이 가장 높은 합격 점수를 요구받는 곳을 확인해 보세요.
+Which countries have the toughest driving theory tests? See where drivers face the highest passing scores worldwide.
