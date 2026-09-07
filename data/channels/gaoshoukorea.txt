@@ -96,3 +96,88 @@ https://www.kiwoom.com/h/invest/research/VMarketSWDetailView?sqno=799
 [2026-09-07 09:23] 주가가 안좋을 때는 안좋은 이야기들이 더 많이 빈번하게 크게 들리고 주가가 좋을 때는 좋은 이야기들이 더 많이 빈번하게 크게 들리는것이 주식시장의 속성.
 
 [2026-09-07 09:27] https://n.news.naver.com/mnews/article/015/0005329331
+
+[2026-09-07 12:44] https://n.news.naver.com/article/119/0003129839
+
+두붐온 🔥
+
+[2026-09-07 12:52] https://mbiz.heraldcorp.com/article/10864870
+
+[2026-09-07 13:10] 환율이 1200원 갈 기세라
+
+https://n.news.naver.com/article/031/0001055881
+
+[2026-09-07 14:56] https://n.news.naver.com/article/008/0005410380
+
+18일
+
+[2026-09-07 15:03] https://www.cbci.co.kr/news/articleView.html?idxno=604554
+
+비나이다
+
+[2026-09-07 15:11] 위로 튀며 팝콘각 장세 종료
+
+[2026-09-07 15:38] 이렇게 하락하라는 얘기는 아니였는데 놀랍지는 않쥬
+
+[2026-09-07 16:02] 코스닥은 그냥 팝콘이 되었습니다
+
+[2026-09-07 16:59] https://www.instagram.com/reel/DbiywYGB8ox/?stkn=M244eXRnc3psMng4
+
+#영화 #프리폴게이트
+
+[2026-09-07 16:59] **🛞 NVIDIA, Hugging Face 129.3억 달러 인수…오픈소스 AI 생태계까지 직접 확보
+
+1. 129.3억 달러에 Hugging Face 인수, 개발자 플랫폼까지 사업영역 확대**
+① Nvidia가 Hugging Face를 129.303억 달러에 인수하기로 합의했으며 이 가운데 약 119억 달러는 기존 주주에게 지급하고 최대 10억 달러는 직원 유지 목적의 주식보상에 활용하는 구조
+② Hugging Face는 1,800만 명 이상의 개발자·연구자, 300만 개 이상의 모델, 50만 개 데이터셋, 100만 개 이상의 애플리케이션을 보유한 세계 최대급 오픈 AI 개발 플랫폼
+③ Nvidia가 GPU·네트워크·CUDA뿐 아니라 개발자가 모델을 찾고 학습·튜닝·배포하는 출발점까지 확보하면서 AI 인프라 가치사슬의 상단으로 사업영역을 확대하는 모습 ([엔비디아](https://blogs.nvidia.com/blog/nvidia-to-acquire-hugging-face))
+
+**2. Closed Model뿐 아니라 Open Model 성장에서도 직접적인 플랫폼 수혜 확보**
+① Hugging Face는 OpenAI·Anthropic과 같은 폐쇄형 모델과 달리 기업·대학·개발자가 직접 수정·배포할 수 있는 Open-source·Open-weight 모델 생태계의 핵심 유통망이라는 의미
+② Nvidia는 이미 Hugging Face에 500개 이상의 모델과 250개 이상의 데이터셋을 공개하며 최대 오픈모델 기여자 중 하나였고, 인수 이후에도 멀티클라우드·멀티가속기 지원을 유지하겠다고 밝힌 상황
+③ Open Model 사용이 확대될수록 Nvidia가 GPU 판매뿐 아니라 모델 탐색·평가·튜닝·Inference·Deployment 과정 전체에서 개발자 접점을 확보할 가능성이 커지는 구조 ([Reuters](https://www.reuters.com/commentary/breakingviews/nvidia-wraps-itself-129-bln-insurance-2026-09-03))
+
+**3. 빅테크 자체 ASIC 확대에 대비한 ‘생태계 방어막’ 성격도 존재**
+① Meta·Microsoft·OpenAI 등 주요 AI 고객들이 자체 칩 개발을 확대하면서 장기적으로 Nvidia GPU에 대한 협상력과 의존도가 낮아질 가능성이 커지는 상황
+② Nvidia는 Hugging Face를 특정 Nvidia 하드웨어에 종속시키지 않고 AMD 등 경쟁 가속기와 다른 Cloud도 계속 지원하겠다고 밝혀, 칩 점유율 경쟁보다 개발자 플랫폼 자체를 장악하려는 전략을 보여줌
+③ 자체 ASIC이 성장하더라도 AI 개발자들이 Hugging Face와 Nvidia의 소프트웨어·인프라를 계속 활용한다면 Nvidia가 하드웨어 점유율 이상의 영향력을 유지할 수 있어 AI 생태계 지배력을 장기적으로 방어하는 보험 성격의 인수로 평가 가능한 수준
+
+#트래킹 #미국주식 #엔비디아 #NVDA
+
+[2026-09-07 17:02] **🛞 Google, AdX 강제매각 위기 회피…광고사업 분할 리스크 크게 완화
+
+1. 美 법원, DOJ의 AdX 강제매각 요구 기각**
+① 미국 연방법원이 DOJ가 요구한 Google의 광고거래소 AdX 강제매각을 거부하며 핵심 광고기술 자산을 계속 보유할 수 있게 된 결과
+② 법원은 Google이 과거 광고기술 시장에서 경쟁을 불법적으로 제한했다고 판단했지만, 회사 분할보다 행동적 시정조치가 적절하다고 본 판단
+③ Google이 Search에 이어 Ad Tech에서도 자산 강제매각을 피하면서 Big Tech 분할 가능성에 대한 구조적 규제 리스크가 낮아진 모습 ([Reuters](https://www.reuters.com/legal/litigation/google-defeats-us-bid-force-ad-tech-sale-2026-09-02))
+
+**2. 대신 경쟁사에 Real-time Bid 접근권 제공 등 시정조치 부과**
+① 법원은 AdX 매각 대신 경쟁사가 Google 광고 경매에 실시간 입찰정보와 접근권을 더 확보할 수 있도록 하는 행동적 구제책을 채택한 상황
+② DOJ는 Google이 과거 Ad Server 고객을 AdX에 묶어 경쟁을 제한했다고 주장했으며, 법원도 해당 행위가 Publisher와 경쟁 과정에 피해를 줬다고 판단한 상태
+③ 따라서 Google은 핵심 자산은 지켰지만 광고경매 운영방식과 경쟁사 접근성은 앞으로 더 개방해야 해 일부 독점적 수익성은 낮아질 가능성이 남은 수준
+
+**3. AdX 자체 비중은 작지만 ‘분할 회피’가 훨씬 중요한 결과**
+① Ad Manager는 2020년 기준 Google 전체 매출의 약 4.1%, 영업이익의 약 1.5%를 차지해 직접적인 실적 비중은 크지 않은 수준
+② 그러나 DOJ가 강제매각에 성공했다면 다른 광고기술 자산이나 Search·YouTube까지 구조적 규제로 확대될 수 있어 단순 AdX 매출보다 선례 효과가 더 컸던 사건
+③ 최종적으로 Google은 벌금이나 일부 운영제한을 감수하더라도 Search·YouTube·Ad Tech를 통합한 광고 생태계를 유지할 수 있게 됐다는 점이 가장 큰 긍정적 의미
+
+#트래킹 #미국주식 #알파벳 #GOOG #GOOGL
+
+[2026-09-07 17:06] 🛞 **Tesla, 프랑스서 FSD(Supervised) 실제 도로시험 착수…EU 전역 승인 여부의 핵심 변수
+
+1. 프랑스 정부, Tesla FSD(Supervised) 실제 도로시험 공식 시작**
+① 프랑스 교통당국이 Tesla의 FSD(Supervised)를 실제 도로에서 시험하기 시작하며 네덜란드에서 제출된 안전성 자료와 Tesla 자체 데이터를 독립적으로 검증하는 단계에 진입
+② 프랑스는 속도제한 준수·운전자 주의 모니터링 등 일부 안전기능에 우려를 제기해왔으나, 최근 수개월간 Tesla와 기술 협의를 진행한 뒤 본격적인 시험에 들어간 상황
+③ Tesla 역시 프랑스 소비자를 대상으로 FSD(Supervised) Ride-Along을 진행하고 있지만 일반 고객 구매·사용은 아직 규제 승인을 기다리는 수준 ([Reuters](https://www.reuters.com/technology/france-starts-tests-teslas-self-driving-tech-2026-09-03))
+
+**2. 프랑스 평가 결과가 EU 전역 승인 표결에 직접적인 참고자료가 될 가능성**
+① 프랑스 정부는 9월 중·하순까지 평가를 마치는 것을 목표로 하고 있으며 결과는 향후 EU 차원의 FSD 승인 논의에 중요한 근거가 될 전망
+② EU 전체 승인을 위한 표결은 빠르면 10월 또는 12월 진행될 수 있으며, 앞서 네덜란드가 잠정 승인한 뒤 벨기에·덴마크·에스토니아·리투아니아가 뒤따른 흐름
+③ 프랑스처럼 인구와 자동차시장이 큰 국가가 긍정적인 평가를 내릴 경우 다른 회원국의 판단에도 영향을 줄 수 있어 EU 전역 상용화 가능성을 높이는 중요한 규제 이벤트 
+
+**3. 승인 시 유럽 FSD 소프트웨어 매출 확대 가능성, 아직 검증 단계라는 점은 주의**
+① EU 전역에서 FSD(Supervised)가 허용될 경우 Tesla는 차량 판매 외에 FSD 판매·구독을 유럽 주요 시장으로 확대할 수 있어 고마진 소프트웨어 매출 확대 가능성
+② Tesla는 유럽 5개국 1억 km 이상 데이터를 근거로 FSD 사용 시 수동운전보다 충돌사고가 4.1배 적었다고 주장하고 있지만 비교 조건의 적정성에는 여전히 외부 검증이 필요한 상황
+③ 따라서 현재 뉴스의 핵심은 프랑스가 FSD를 승인했다는 것이 아니라 유럽 대형 국가가 직접 안전성을 검증하기 시작했다는 점이며, 실제 투자 포인트는 프랑스 평가 결과와 이후 EU 표결 결과
+
+#트래킹 #미국주식 #테슬라 #TSLA
