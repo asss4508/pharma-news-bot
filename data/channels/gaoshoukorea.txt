@@ -176,3 +176,68 @@ Home is far away.
 2. 이 두 가지가 맞물리면서 **AI 도입이 크게 가속화되고, 제번스의 역설이 나타날 것**이다. 동시에 현실의 다양한 용도 전반에서 이 모델들을 믿고 쓰려면, 아직 얼마나 많은 과제가 남아 있는지도 드러날 것이다.
 
 3. AI **인프라에 이보다 더 강력한 호재가 될 만한 결과는 상상하기 어렵다.**
+
+[2026-09-08 14:39] 알 아라비야에 의하면
+
+사우디 남부 지역 에너지 시설 여러 곳에 대한 공격이 있었고 화재가 발생해 현재 대응 중이라는 보도
+
+관련 보도 이 후 유가 추가 상승
+
+[2026-09-08 15:14] 살려주세요
+
+[2026-09-08 17:02] **🛞 Tesla FSD(Supervised), 슬로베니아까지 승인 확대…유럽 6번째 시장 진입
+
+1. 슬로베니아, 유럽 6번째 FSD(Supervised) 승인 국가로 합류**
+① 슬로베니아가 Tesla FSD(Supervised)의 규제 승인을 완료하면서 네덜란드·리투아니아·에스토니아·덴마크·벨기에에 이어 유럽 6번째 승인 국가로 합류한 상황
+② Tesla Europe은 슬로베니아 승인을 공식적으로 알리고 정식 서비스 출시를 곧 시작할 예정이라고 밝혀, 약 2개월간 멈췄던 유럽 국가별 승인 확대가 다시 시작되는 모습
+③ Tesla 슬로베니아 공식 페이지도 FSD(Supervised)를 안내하고 있으며 규제 승인을 받은 시장에서만 기능을 활성화할 수 있다고 설명해 실제 서비스 도입을 준비하는 수준 ([not a tesla app](https://www.notateslaapp.com/news/4660/tesla-fsd-supervised-approved-in-slovenia-launching-soon))
+
+**2. 네덜란드 최초 승인 이후 유럽 국가별 확산 지속**
+① 네덜란드 RDW가 2026년 4월 FSD(Supervised)에 대해 네덜란드 내에서 유효한 유럽 형식승인을 처음 부여한 뒤 리투아니아·에스토니아·덴마크·벨기에가 잇따라 사용을 허용한 흐름
+② RDW는 승인 전 18개월 이상 시험을 진행하고 3,000시간 이상의 자체 테스트와 유럽 내 180만 km의 주행 데이터를 검토해 시스템이 적용 기준을 충족한다고 판단한 결과
+③ 슬로베니아까지 추가되면서 Tesla가 개별 국가에서 실제 운행 데이터를 축적할 수 있는 범위가 넓어져 향후 EU 전체 승인 논의에 활용할 안전성 데이터도 증가하는 구조 ([Reuters](https://www.reuters.com/business/autos-transportation/tesla-touts-european-supervised-self-driving-safety-data-ahead-eu-vote-2026-09-01))
+
+**3. 프랑스 시험과 EU 표결이 다음 핵심 이벤트**
+① 프랑스도 9월부터 FSD(Supervised)의 실제 도로시험을 시작해 네덜란드와 Tesla가 제출한 안전성 데이터를 독자적으로 검증하는 단계에 진입한 상황
+② Tesla는 기존 유럽 5개국에서 1억 km 이상의 주행 데이터를 분석한 결과 FSD 사용 차량의 충돌률이 수동운전 Tesla보다 4.1배 낮았다고 주장하며 EU 승인 근거를 강화하는 모습
+③ EU 전체 확대를 위한 표결이 이르면 10월 이후 진행될 가능성이 있어 슬로베니아 승인과 프랑스 시험 결과가 향후 독일·프랑스·이탈리아 등 대형 자동차 시장까지 FSD를 확대할 수 있는 중요한 데이터포인트 ([Reuters](https://www.reuters.com/technology/france-starts-tests-teslas-self-driving-tech-2026-09-03))
+
+#트래킹 #미국주식 #테슬라 #TSLA
+
+[2026-09-08 17:03] **🛞 중국 AI칩 ‘4대 용’ 급성장…Nvidia 중국 점유율 55%까지 하락**
+
+**1. Enflame·Moore Threads·MetaX·Biren, 중국 AI칩 대체재로 빠르게 성장**
+① 중국의 ‘4대 AI칩 업체’로 불리는 Enflame·Moore Threads·MetaX·Biren이 AI Training·Inference용 GPU와 가속기를 빠르게 확대하며 Nvidia의 중국 시장을 잠식하는 흐름
+② Tencent가 투자한 Enflame은 최근 상하이 STAR Market IPO에서 약 9.08억 달러를 조달했으며 온라인 청약 경쟁률이 6,109배에 달할 만큼 중국 내 AI 반도체 투자 열기가 강한 수준
+③ 이들 업체가 아직 Nvidia와 동일한 성능·생태계를 확보한 것은 아니지만 중국 정부와 빅테크의 국산화 수요를 기반으로 상용화와 생산능력을 빠르게 확대하는 모습 ([Reuters](https://www.reuters.com/commentary/breakingviews/chinas-ai-dragons-breathe-fire-nvidias-moat-2026-09-07))
+
+**2. Nvidia 중국 점유율 약 55%로 하락, 수출규제가 국산칩 전환을 가속**
+① Reuters Breakingviews는 Nvidia의 중국 AI 반도체 시장점유율이 과거 사실상 독점 수준에서 약 55%까지 낮아진 것으로 추정하며 중국 국산칩의 실제 시장 침투가 시작된 것으로 평가
+② 미국의 첨단 GPU 수출규제로 Nvidia가 중국 고객에게 최상위 제품을 자유롭게 공급하지 못하면서 Huawei·Enflame·Moore Threads 등 중국 업체가 성능 격차를 좁힐 시간을 확보한 구조
+③ 중국 정부 역시 AI 인프라의 미국 기술 의존도를 줄이는 방향으로 국산 반도체 사용을 지원하면서 Nvidia의 중국 사업에는 정책과 경쟁이 동시에 압박하는 환경이 형성되는 모습 ([Reuters](https://www.reuters.com/world/china/tencent-backed-enflame-ipo-draws-6109-times-online-demand-2026-09-02))
+
+**3. CUDA 호환성까지 확대하며 Nvidia의 가장 강한 진입장벽에 도전**
+① Nvidia의 핵심 경쟁우위는 GPU 성능뿐 아니라 개발자가 오랫동안 사용해온 CUDA 소프트웨어 생태계이지만 중국 업체들도 기존 CUDA 기반 코드를 쉽게 옮길 수 있는 호환 기술을 개발하는 상황
+② Moore Threads는 CUDA용으로 작성된 코드를 자사 시스템에서 사용할 수 있도록 지원하고 MetaX 역시 CUDA와 유사한 소프트웨어 환경을 구축하면서 고객의 Nvidia에서 국산칩으로 이동하는 전환비용을 낮추는 전략
+③ 아직 성능·개발도구·생태계 완성도에서는 Nvidia가 우위지만 중국 업체들이 Hardware와 Software를 동시에 개선할 경우 장기적으로 중국에서 Nvidia의 시장점유율과 가격결정력이 추가로 약화될 가능성 
+
+#트래킹 #미국주식 #엔비디아 #NVDA
+
+[2026-09-08 17:06] **🛞 Wistron, 14.7억 달러 조달…Nvidia AI 서버 공급망 증설 가속**
+
+**1. Wistron, 글로벌 주식 발행으로 14.7억 달러 조달**
+① Nvidia 핵심 AI 서버 공급업체인 대만 Wistron이 2,500만 GDR 발행을 통해 약 14.7억 달러를 조달하며 대규모 자금 확보에 나선 상황
+② 발행가는 GDR당 58.88달러로 결정됐으며, 신주 발행으로 기존 주주 지분은 약 7.29% 희석되는 구조
+③ 조달한 자금은 주로 외화로 결제하는 원자재 구매와 생산 확대에 활용될 예정으로, AI 서버 수요에 대응하기 위한 운전자본 확충 성격이 강한 모습 ([Reuters](https://www.reuters.com/world/asia-pacific/taiwans-wistron-launches-up-15-billion-gds-sale-term-sheet-shows-2026-09-07))
+
+**2. Texas 7억 달러 공장 가동, Nvidia 최신 AI 시스템 생산능력 확대**
+① Wistron은 지난 7월 Texas에서 약 7억 달러를 투자한 신규 공장을 가동하며 Nvidia의 최신 AI 시스템 생산능력을 미국 내에서 확대하는 단계
+② 회사는 Taiwan에서도 추가 생산투자를 승인하는 등 AI 서버 주문 증가에 맞춰 북미와 아시아 양쪽에서 Capacity를 동시에 확장하는 전략
+③ Nvidia가 FY2028까지 공급제약을 예상하는 상황에서 서버 조립·시스템 공급업체까지 증설에 나서고 있다는 점은 GPU 주문을 실제 데이터센터 시스템으로 전환하는 병목이 완화될 가능성을 보여줌
+
+**3. Q2 매출 +64%·순이익 +128%, AI 서버 수요가 공급을 초과**
+① Wistron의 2분기 매출은 전년 대비 64% 증가, 순이익은 128% 증가하며 AI 서버 확대가 실적에 직접 반영되는 모습
+② 회사는 Cloud 업체와 기업 고객의 AI 서버 수요가 여전히 공급을 초과하고 있다고 밝히며 추가 생산능력 확대의 필요성을 강조한 상황
+③ Nvidia뿐 아니라 서버·전력·냉각 등 AI 인프라 공급망 전반이 동시에 증설되고 있어 현재 AI CapEx가 단기 GPU 주문보다 수년간 이어지는 물리적 인프라 구축 사이클로 확장되는 흐름
+
+#트래킹 #미국주식 #엔비디아 #NVDA
