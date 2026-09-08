@@ -135,3 +135,13 @@ https://biz.chosun.com/topics/topics_social/2026/09/08/DHSL65YHSBDEPPZ4HL2SBGJQL
 https://x.com/lu_sichu/status/2097192242913882589
 
 [2026-09-08 17:11] 나 머니보틀은 Astra 출시일인 9월 4일을 특이점의 날로 지정합니다
+
+[2026-09-08 21:45] 삼성전자, 실리콘 포토닉스 자체 검증 본격화
+
+삼성전자가 TSMC의 검증을 통과한 폼팩터·MPI 장비로 광집적회로(PIC) 웨이퍼를 테스트 중이며, 2026년 말까지 자체 평가를 마치는 것이 목표라는 보도. 기존 imec 등에 맡기던 검증을 내부에서 수행하기 시작한 것.
+
+2027년 실리콘 포토닉스 파운드리 서비스 개시와 광엔진 테스트를 계획하고 있음. 장기적으로는 광엔진·로직·HBM을 하나의 패키지에 통합하고, CPO 적용 범위를 네트워크 스위치에서 GPU·CPU로 넓힌다는 구상.
+
+출처: [TrendForce](https://www.trendforce.com/news/2026/09/08/news-samsung-reportedly-targets-in-house-silicon-photonics-pic-testing-by-end-2026-using-tsmc-qualified-tools/)
+
+[2026-09-08 22:01] Qualcomm and Amazon have reached a multi-generation product cooperation agreement

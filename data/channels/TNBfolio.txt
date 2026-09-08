@@ -34,3 +34,7 @@ https://www.bloomberg.com/news/articles/2026-09-08/samsung-buyback-highlights-ko
 - 미국 정부의 외국 기업 모델 접근 제한 등 지정학적 리스크가 부각되는 가운데, 유럽의 기술 주권 및 자체 AI 공급망 확보 필요성이 더욱 커지고 있다.
 - 서버 구축형 오픈 모델을 앞세운 Mistral은 아시아와 북미 시장 확장에 힘입어 올해 말까지 연간 반복 매출(ARR) 10억 달러를 달성할 궤도에 올랐다.
 https://finance.yahoo.com/technology/ai/articles/french-ai-company-mistral-hits-050155785.html
+
+[2026-09-08 17:55] 코스피 신용잔고
+
+[2026-09-08 17:55] 코스닥 신용잔고
