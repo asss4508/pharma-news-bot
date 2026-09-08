@@ -1,46 +1,49 @@
 name: 모닝 스몰캡, 바이오 뉴스
 
 on:
-  # GitHub Actions의 schedule 트리거는 정확한 시각을 못 맞추고 몇 시간씩
-  # 밀리는 경우가 잦다(정각을 비켜도 마찬가지). 대신 10분마다 깨어나서
-  # "아직 오늘 안 보냈고 06:13이 지났으면 지금 보낸다"고 스스로 판단하게
-  # 해서, 어떤 실행이 실제로 언제 돌든 06:13 이후 첫 실행에서 발송되게
-  # 한다. public 저장소라 Actions 사용량은 무료다.
+  # 예약 실행은 지연/누락될 수 있다. 00:43 KST부터 먼저 실행된 작업을
+  # 종료하지 않고 06:13까지 대기시켜 아침의 새 예약 실행에 의존하지 않는다.
+  # 대기는 최대 5시간 30분으로 GitHub-hosted 작업 한도(6시간) 이내다.
+  # 정각을 피한 10분 간격 예약은 시작 실패 시 재시도/늦은 발송 복구용이다.
+  # GitHub 장애나 사전 대기 시간 전체의 예약 누락까지 정시성을 보장하지는 않는다.
   schedule:
-    - cron: "*/10 * * * *"
+    - cron: "7,17,27,37,47,57 * * * *"
   workflow_dispatch:
+    inputs:
+      force_send:
+        description: "오늘 이미 보냈어도 즉시 재발송 (의도적인 수동 재발송만 사용)"
+        type: boolean
+        default: false
+
+# 대기 중인 작업을 새 예약이 취소하지 않게 하며 수동/예약 발송도 직렬화한다.
+concurrency:
+  group: daily-news-send
+  cancel-in-progress: false
 
 permissions:
   contents: write
 
+env:
+  PYTHONUNBUFFERED: "1"
+
 jobs:
   send-news:
     runs-on: ubuntu-latest
+    timeout-minutes: 355
     steps:
       - name: 코드 체크아웃
         uses: actions/checkout@v4
         with:
+          # 대기열에 들어온 시점의 SHA 대신 실행 시점 main의 최신 발송 이력을 읽는다.
+          ref: main
+          fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: 발송 여부 판단
         id: gate
-        run: |
-          today=$(TZ='Asia/Seoul' date +'%Y-%m-%d')
-          hhmm=$(TZ='Asia/Seoul' date +'%H%M')
-          last_sent=$(cat data/daily_news_last_sent.txt 2>/dev/null || echo "")
-          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
-            echo "수동 실행, 바로 진행"
-            echo "proceed=true" >> "$GITHUB_OUTPUT"
-          elif [ "$last_sent" = "$today" ]; then
-            echo "오늘($today) 이미 발송됨, 건너뜀"
-            echo "proceed=false" >> "$GITHUB_OUTPUT"
-          elif [[ "$hhmm" < "0613" ]]; then
-            echo "아직 목표 시각(06:13 KST) 전, 건너뜀 (현재 $hhmm)"
-            echo "proceed=false" >> "$GITHUB_OUTPUT"
-          else
-            echo "목표 시각 이후 첫 실행, 발송 진행 (현재 $hhmm)"
-            echo "proceed=true" >> "$GITHUB_OUTPUT"
-          fi
+        env:
+          FORCE_SEND: ${{ inputs.force_send }}
+        run: python3 pharma-news/scripts/daily_news_schedule.py gate
 
       - name: Python 설치
         if: steps.gate.outputs.proceed == 'true'
@@ -51,6 +54,12 @@ jobs:
       - name: 패키지 설치
         if: steps.gate.outputs.proceed == 'true'
         run: pip install requests beautifulsoup4
+
+      - name: 한국시간 06시 13분까지 사전 대기
+        if: steps.gate.outputs.proceed == 'true'
+        env:
+          SEND_TARGET: ${{ steps.gate.outputs.target }}
+        run: python pharma-news/scripts/daily_news_schedule.py wait --target "$SEND_TARGET"
 
       - name: 제약 뉴스 전송
         if: steps.gate.outputs.proceed == 'true'
@@ -68,12 +77,22 @@ jobs:
 
       - name: 발송 이력 커밋
         if: steps.gate.outputs.proceed == 'true'
+        env:
+          SEND_DATE: ${{ steps.gate.outputs.send_date }}
         run: |
-          TZ='Asia/Seoul' date +'%Y-%m-%d' > data/daily_news_last_sent.txt
+          printf '%s\n' "$SEND_DATE" > data/daily_news_last_sent.txt
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add data/daily_news_last_sent.txt
           git diff --cached --quiet && exit 0
           git commit -m "chore: 모닝 뉴스 발송 이력 업데이트"
-          git pull --rebase origin main
-          git push
+          # 다른 수집 작업이 main에 동시에 커밋해도 발송 이력을 보존한다.
+          for attempt in 1 2 3; do
+            git pull --rebase origin main
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+            sleep 2
+          done
+          echo "::error::발송은 완료됐지만 발송 이력 저장에 실패했습니다. 재실행 전 확인하세요."
+          exit 1
