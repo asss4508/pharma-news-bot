@@ -4,6 +4,7 @@ import os
 import re
 import json
 from html import escape
+from urllib.parse import urlparse, urljoin
 from datetime import datetime, timezone, timedelta
 
 # 90분마다 실행되므로 최근에 이미 보낸 기사는 다시 보내지 않도록 이력을 저장한다.
@@ -17,6 +18,26 @@ HEADERS = {
 }
 
 KST = timezone(timedelta(hours=9))
+
+# 상품 홍보·수익률 경쟁은 기업 이벤트와 구분해 제외한다(대소문자 무관).
+PRODUCT_KEYWORDS = [
+    "etf", "etn", "펀드", "자산운용", "신한운용", "삼성운용", "한투운용",
+    "순자산", "운용자산", "수익률", "목표주가", "추천주", "특징주",
+]
+COMPANY_EVENTS = [
+    "수주", "공급계약", "공급 계약", "계약 체결", "계약체결", "납품",
+    "신제품", "신약", "기술이전", "기술 이전", "임상", "허가", "특허",
+    "세계 최초", "세계최초", "상용화", "양산", "개발 성공", "개발성공",
+    "인수", "합병", "m&a", "지분 매각", "지분 인수", "경영권",
+    "공장 신설", "공장 증설", "착공", "준공", "생산 확대", "합작",
+    "흑자전환", "흑자 전환", "적자전환", "적자 전환", "사상 최대 실적",
+    "영업이익", "어닝 서프라이즈", "리콜", "소송", "횡령", "배임",
+    "거래정지", "상장폐지", "유상증자", "자사주 소각",
+]
+
+
+def has_company_event(title):
+    return any(keyword in title.casefold() for keyword in COMPANY_EVENTS)
 
 BROKER_KEYWORDS = [
     "미래에셋", "삼성증권", "키움", "한국투자", "NH투자", "KB증권", "신한투자",
@@ -73,6 +94,8 @@ def clean_title(title):
     return title.strip()
 
 def is_invalid(title):
+    if any(keyword in title.casefold() for keyword in PRODUCT_KEYWORDS):
+        return True
     for keyword in EXCLUDE_KEYWORDS + BROKER_KEYWORDS:
         if keyword in title:
             return True
@@ -83,7 +106,8 @@ def is_invalid(title):
     return False
 
 def get_priority(title):
-    score = 0
+    # 실제 기업 이벤트를 섹터 키워드보다 우선한다.
+    score = 20 * sum(keyword in title.casefold() for keyword in COMPANY_EVENTS)
     for keyword in HIGH_PRIORITY:
         if keyword in title:
             score += 1
@@ -182,8 +206,9 @@ def get_article_summary(url, title=None):
             if content:
                 break
 
+        # 본문 영역을 찾지 못하면 메뉴·광고를 발췌하지 않는다.
         if not content:
-            content = soup.body
+            return ""
 
         if content:
             for tag in content.select(
@@ -235,7 +260,7 @@ def get_article_summary(url, title=None):
     return ""
 
 def compact_summary(text):
-    """원문의 완결된 문장 최대 2개를 추출해 240자 이내로 정리한다."""
+    """원문 앞부분의 완결된 문장 최대 3개를 두 문단으로 발췌한다."""
     sentences = re.split(r'(?<=[.!?])\s+', re.sub(r'\s+', ' ', text).strip())
     result = []
     for sentence in sentences:
@@ -243,12 +268,14 @@ def compact_summary(text):
             continue
         if sentence in result:
             continue
-        if len('\n'.join(result + [sentence])) > 240:
-            continue
-        result.append(sentence)
-        if len(result) == 2:
+        if len('\n\n'.join(result + [sentence])) > 650:
             break
-    return '\n'.join(result)
+        result.append(sentence)
+        if len(result) == 3:
+            break
+    if len(result) > 1:
+        return result[0] + '\n\n' + ' '.join(result[1:])
+    return ' '.join(result)
 
 
 def fetch_articles(url, domain, href_filter=None):
@@ -265,18 +292,21 @@ def fetch_articles(url, domain, href_filter=None):
                 continue
             if is_invalid(title):
                 continue
+            if not has_company_event(title):
+                continue
             if href_filter and href_filter not in href:
                 continue
             if "ranking" in href or "ntype=RANKING" in href:
                 continue
-            if href.startswith("/"):
-                full_url = domain + href
-            elif href.startswith("http"):
-                full_url = href
-            else:
+            full_url = urljoin(domain, href)
+            if urlparse(full_url).scheme not in ("http", "https"):
                 continue
-            base_domain = domain.replace("https://", "").replace("http://", "").split("/")[0]
-            if base_domain not in full_url:
+            base_domain = urlparse(domain).hostname
+            host = urlparse(full_url).hostname or ""
+            allowed = host == base_domain or host.endswith('.' + base_domain)
+            if base_domain == "news.naver.com":
+                allowed = host in ("news.naver.com", "n.news.naver.com")
+            if not allowed:
                 continue
             if full_url in seen:
                 continue
@@ -306,6 +336,7 @@ def save_sent_titles(sent_titles, newly_sent_title):
 def pick_best_article(sent_titles):
     all_articles = []
     all_articles += fetch_articles("https://news.naver.com/breakingnews/section/101/258", "https://news.naver.com", "article")
+    all_articles += fetch_articles("https://news.naver.com/breakingnews/section/101/261", "https://news.naver.com", "article")
     all_articles += fetch_articles("https://www.fnnews.com/section/002001000", "https://www.fnnews.com")
     all_articles += fetch_articles("https://www.sedaily.com/market", "https://www.sedaily.com")
     all_articles += fetch_articles("https://www.sedaily.com/economy", "https://www.sedaily.com")
@@ -314,6 +345,8 @@ def pick_best_article(sent_titles):
     seen_titles = set()
     unique = []
     for title, url, score in all_articles:
+        if is_invalid(title) or not has_company_event(title):
+            continue
         t = normalize_title(title)
         if t not in seen_titles:
             seen_titles.add(t)
@@ -337,10 +370,10 @@ def pick_best_article(sent_titles):
 def build_message(article):
     title, url = article
     summary = get_article_summary(url, title)
-    msg = "📰 <b>" + escape(title) + "</b>\n\n"
+    msg = "🔜 <b>" + escape(title) + "</b>\n\n"
     if summary:
-        msg += '\n'.join('• ' + escape(line) for line in summary.splitlines() if line) + "\n\n"
-    msg += '<a href="' + escape(url, quote=True) + '">원문 보기</a>'
+        msg += escape(summary) + "\n\n"
+    msg += escape(url)
     return msg
 
 def send_telegram(message):
