@@ -3,16 +3,14 @@ from bs4 import BeautifulSoup
 import os
 import re
 import json
+from html import escape
 from datetime import datetime, timezone, timedelta
 
-TELEGRAM_TOKEN = os.environ["TELEGRAM_BOT_TOKEN"]
-CHAT_ID = os.environ["TELEGRAM_CHAT_ID"]
-
-# 3시간마다 실행되므로 최근에 이미 보낸 기사는 다시 보내지 않도록 이력을 저장한다.
+# 90분마다 실행되므로 최근에 이미 보낸 기사는 다시 보내지 않도록 이력을 저장한다.
 SENT_LOG_PATH = os.path.join(
     os.path.dirname(__file__), "..", "..", "data", "hourly_sent_log.json"
 )
-SENT_LOG_KEEP = 60  # 최근 며칠치 실행분(3시간 간격 기준 약 7일)만 보관
+SENT_LOG_KEEP = 90  # 하루 9건 기준 약 10일치 보관
 
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
@@ -172,12 +170,12 @@ def get_article_summary(url, title=None):
 
         content = None
         selectors = [
-            "article", "#articleBody", "#article-view-content-div",
+            "#dic_area", "#articleBody", "#article-view-content-div",
             ".article_body", ".news_body", "#newsct_article",
             "#articeBody", ".article-body", "#article_content",
             ".article_txt", "#news_body_area", ".news-article-body",
             "#cont_article", ".view_text", "#articleBodyContents",
-            ".article-content", ".news_end_body"
+            ".article-content", ".news_end_body", "article"
         ]
         for selector in selectors:
             content = soup.select_one(selector)
@@ -230,37 +228,28 @@ def get_article_summary(url, title=None):
             text = re.sub(r'저작권.*?(?=\S)', '', text)
             text = re.sub(r'\s+', ' ', text).strip()
 
-            # 문장 분리
-            sentences = re.split(r'(?<=[.!?])\s+', text)
-            sentences = [s.strip() for s in sentences if len(s.strip()) > 20]
-
-            # 3문장, 200자 이내
-            result = []
-            char_count = 0
-            for s in sentences[:5]:
-                result.append(s)
-                char_count += len(s)
-                if len(result) >= 3 or char_count >= 200:
-                    break
-
-            # 마침표로 끝나는 문장까지만
-            while result and not result[-1].endswith(('.', '!', '?')):
-                result.pop()
-
-            if not result:
-                return ""
-
-            # 두 단락으로 나누기
-            mid = len(result) // 2
-            para1 = " ".join(result[:mid]) if mid > 0 else " ".join(result)
-            para2 = " ".join(result[mid:]) if mid > 0 else ""
-            if para2:
-                return para1 + "\n\n" + para2
-            return para1
+            return compact_summary(text)
 
     except:
         pass
     return ""
+
+def compact_summary(text):
+    """원문의 완결된 문장 최대 2개를 추출해 240자 이내로 정리한다."""
+    sentences = re.split(r'(?<=[.!?])\s+', re.sub(r'\s+', ' ', text).strip())
+    result = []
+    for sentence in sentences:
+        if len(sentence) <= 20 or not sentence.endswith(('.', '!', '?')):
+            continue
+        if sentence in result:
+            continue
+        if len('\n'.join(result + [sentence])) > 240:
+            continue
+        result.append(sentence)
+        if len(result) == 2:
+            break
+    return '\n'.join(result)
+
 
 def fetch_articles(url, domain, href_filter=None):
     articles = []
@@ -303,12 +292,13 @@ def normalize_title(title):
 def load_sent_titles():
     try:
         with open(SENT_LOG_PATH, encoding="utf-8") as f:
-            return set(json.load(f))
+            return list(dict.fromkeys(json.load(f)))
     except Exception:
-        return set()
+        return []
 
 def save_sent_titles(sent_titles, newly_sent_title):
-    updated = list(sent_titles)[-(SENT_LOG_KEEP - 1):] + [newly_sent_title]
+    updated = [title for title in sent_titles if title != newly_sent_title]
+    updated = updated[-(SENT_LOG_KEEP - 1):] + [newly_sent_title]
     os.makedirs(os.path.dirname(SENT_LOG_PATH), exist_ok=True)
     with open(SENT_LOG_PATH, "w", encoding="utf-8") as f:
         json.dump(updated, f, ensure_ascii=False, indent=2)
@@ -347,16 +337,16 @@ def pick_best_article(sent_titles):
 def build_message(article):
     title, url = article
     summary = get_article_summary(url, title)
-    msg = "🔜 <b>" + title + "</b>\n\n"
+    msg = "📰 <b>" + escape(title) + "</b>\n\n"
     if summary:
-        msg += summary + "\n\n"
-    msg += url
+        msg += '\n'.join('• ' + escape(line) for line in summary.splitlines() if line) + "\n\n"
+    msg += '<a href="' + escape(url, quote=True) + '">원문 보기</a>'
     return msg
 
 def send_telegram(message):
-    api_url = "https://api.telegram.org/bot" + TELEGRAM_TOKEN + "/sendMessage"
+    api_url = "https://api.telegram.org/bot" + os.environ["TELEGRAM_BOT_TOKEN"] + "/sendMessage"
     payload = {
-        "chat_id": CHAT_ID,
+        "chat_id": os.environ["TELEGRAM_CHAT_ID"],
         "text": message,
         "parse_mode": "HTML",
         "disable_web_page_preview": True,
@@ -366,6 +356,10 @@ def send_telegram(message):
     print("전송 완료")
 
 if __name__ == "__main__":
+    # 늦어진 예약 실행은 야간에 보내지 않는다. 수동 실행은 즉시 전송한다.
+    if os.environ.get("GITHUB_EVENT_NAME") == "schedule" and not 9 <= datetime.now(KST).hour < 22:
+        print("발송 시간대가 지나 이번 회차는 건너뜁니다.")
+        raise SystemExit(0)
     print("뉴스 수집 중...")
     sent_titles = load_sent_titles()
     article = pick_best_article(sent_titles)

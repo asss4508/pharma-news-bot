@@ -1,11 +1,14 @@
-name: 시간별 스몰캡 뉴스
+name: 90분 주요 뉴스
 on:
   schedule:
-    # 매일 2시간마다 (KST 01/03/05/07/09/11/13/15/17/19/21/23시)
-    # 매 정각(0분)은 전 세계 워크플로가 몰려 GitHub 큐 지연이 커지므로,
-    # 정각에서 7분 비켜서 지연을 줄인다.
-    - cron: "7 */2 * * *"
+    # KST 09:00, 10:30, 12:00, 13:30, 15:00, 16:30, 18:00, 19:30, 21:00
+    # UTC 기준. GitHub 실행 대기열에 따라 실제 발송은 지연될 수 있다.
+    - cron: "0 0,3,6,9,12 * * *"
+    - cron: "30 1,4,7,10 * * *"
   workflow_dispatch:
+concurrency:
+  group: hourly-news
+  cancel-in-progress: false
 jobs:
   send-news:
     runs-on: ubuntu-latest
@@ -26,6 +29,7 @@ jobs:
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          GITHUB_EVENT_NAME: ${{ github.event_name }}
         run: python pharma-news/scripts/send_hourly_news.py
       - name: 전송 이력 커밋
         run: |
