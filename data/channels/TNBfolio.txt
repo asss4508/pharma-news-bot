@@ -36,3 +36,21 @@ https://www.marketwatch.com/story/refining-bottlenecks-are-emerging-as-the-next-
 - 만성적인 메모리 부족 대응을 위해 Sandisk와 공동으로 5조 엔(약 330억 달러) 이상의 설비 투자를 진행 중이며, 출하량의 50%를 장기 계약으로 확보하는 목표에 근접했다.
 - 일반 DRAM 대체재 개발을 위해 대만 Nanya Technology와 산화금속 소재 기반 메모리 R&D를 진행 중이며, 332단 10세대 3D 플래시 메모리 출하 등 고부가 AI 데이터센터 사업에 집중하고 있다.
 https://www.bloomberg.com/news/articles/2026-09-09/kioxia-dismisses-sk-hynix-tie-up-vows-to-ease-chip-price-rises
+
+[2026-09-09 13:52] 트럼프 행정부, Ford의 중국 기업 제휴에 국가 안보 위험 강력 비판 - Reuters
+(by https://t.me/TNBfolio)
+- Sean Duffy 미국 교통부 장관은 Jim Farley Ford CEO에게 서한을 보내 중국 배터리 제조사 CATL 및 완성차 기업 Geely, BYD와의 협력 관계에 심각한 우려를 표명하며 결별을 촉구했다.
+- 미국 교통부는 미시간주 마셜 공장에서 추진 중인 중국 군 연계 기업 CATL의 기술 라이선스 의존과 Lincoln Nautilus의 2030년까지 중국 내 생산 유지 결정을 강도 높게 비판했다.
+- Ford는 해당 서한이 여론몰이를 위한 부당한 시도라고 반박하며, 미국 내 배터리 공장의 소유권과 운영권 및 고용을 완전히 통제하고 있다고 반론을 제기했다.
+- 미국 의회는 연내 중국산 자동차 수입 금지법 통과를 추진 중이며, 주요 글로벌 완성차 업체들도 BYD를 비롯한 중국 업체의 미국 시장 진입 면제를 차단할 것을 의회에 요청했다.
+- 이번 비판은 이달 말 예정된 도널드 트럼프 미국 대통령과 시진핑 중국 국가주석의 정상회담을 앞두고 미국 내 중국산 자동차 및 부품 규제가 강화되는 가운데 제기되었다.
+https://www.reuters.com/business/autos-transportation/trump-administration-blasts-ford-business-deals-with-chinese-firms-2026-09-08/
+
+[2026-09-09 15:07] OpenAI, 삼성전자와 차세대 칩 공동 개발 및 협력 심화 발표 - Reuters
+(by https://t.me/TNBfolio)
+- OpenAI가 자체 인공지능 칩 개발을 추진하며 삼성전자와 반도체 및 기업용 AI 서비스 전반에 걸쳐 파트너십을 심화하고 있다고 발표했다.
+- 김해리슨 OpenAI 한국지사장은 서울 기자간담회에서 현재 개발 중인 차세대 칩의 공동 생산 및 연구 분야에서 삼성전자와 가장 큰 진전을 이루었다고 밝혔다.
+- 삼성전자는 R&D, 마케팅, 영업 등 국내외 전 사업 부문에서 ChatGPT를 도입해 전 세계에서 가장 대규모로 활용 중인 기업 중 하나로 언급되었다.
+- OpenAI는 고성능 컴퓨팅 확대로 메모리 반도체 수요가 지속 증가함에 따라 삼성전자 및 SK하이닉스를 비롯한 한국 반도체 공급망과의 협력이 핵심 우선순위라고 강조했다.
+- 한국 기업·기관의 ChatGPT Enterprise 사용자 수는 8월 말 기준 전년 대비 28배 급증했으며, 신규 모델 GPT-6 Astra 출시를 계기로 기업 도입이 한층 가속화될 것으로 전망되었다.
+https://www.reuters.com/world/asia-pacific/openai-says-working-with-samsung-next-generation-chips-deepening-cooperation-2026-09-09/
