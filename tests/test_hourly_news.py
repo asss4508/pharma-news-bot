@@ -44,7 +44,7 @@ class HourlyNewsTests(unittest.TestCase):
         self.assertFalse(news.has_company_event('반도체 AI 기대감에 코스피 상승'))
 
     def test_no_matching_company_event_skips_round(self):
-        with patch.object(news, 'fetch_articles', return_value=[('신한운용 반도체 ETF 수익률 1위', 'https://example.com', 99)]):
+        with patch.object(news, 'fetch_popular_articles', return_value=[]), patch.object(news, 'fetch_articles', return_value=[('신한운용 반도체 ETF 수익률 1위', 'https://example.com', 99)]):
             self.assertIsNone(news.pick_best_article([]))
 
     def test_excerpt_uses_original_sentences_in_order(self):
@@ -67,13 +67,46 @@ class HourlyNewsTests(unittest.TestCase):
                 news.save_sent_titles(news.load_sent_titles(), 'latest')
                 self.assertEqual(news.load_sent_titles(), ['middle', 'new', 'latest'])
 
-    def test_workflow_runs_every_90_minutes_in_daytime(self):
+    def test_workflow_runs_hourly_from_8_to_16(self):
         import re
         workflow = (ROOT / '.github/workflows/hourly_news.yml').read_text(encoding='utf-8')
         times = []
         for minute, hours in re.findall(r'cron: "(\d+) ([\d,]+) \* \* \*"', workflow):
             times.extend(((int(hour) + 9) % 24) * 60 + int(minute) for hour in hours.split(','))
-        self.assertEqual(sorted(times), list(range(9 * 60, 21 * 60 + 1, 90)))
+        self.assertEqual(sorted(times), list(range(8 * 60, 16 * 60 + 1, 60)))
+
+    def test_send_window_uses_korea_time_and_allows_delayed_final_run(self):
+        from datetime import datetime, timezone
+        for hour, expected in [(7, False), (8, True), (16, True), (17, False)]:
+            now = datetime(2026, 9, 9, hour, 30, tzinfo=news.KST)
+            self.assertEqual(news.in_send_window(now.astimezone(timezone.utc)), expected)
+
+    def test_popular_parser_filters_products_and_non_business_press(self):
+        from unittest.mock import Mock
+        def item(press, rank, title):
+            return f'<li><em class="list_ranking_num">{rank}위</em><a class="list_title" href="https://n.news.naver.com/article/{press}/123?ntype=RANKING">{title}</a></li>'
+        html = '<div class="rankingnews_box"><ul class="rankingnews_list">' + ''.join([
+            item('015', 2, '새빛테크, 해외 공급계약 체결'),
+            item('009', 1, '반도체 ETF 신제품 수익률 1위'),
+            item('025', 1, '유명인 소송 새로운 소식 공개'),
+        ]) + '</ul></div>'
+        with patch.object(news.requests, 'get', return_value=Mock(text=html)):
+            result = news.fetch_popular_articles()
+        self.assertEqual(len(result), 1)
+        self.assertEqual(result[0][1], 'https://n.news.naver.com/article/015/123')
+        self.assertGreater(result[0][2], 10000)
+
+    def test_popular_article_beats_keyword_score_and_stale_is_skipped(self):
+        today = news.datetime.now(news.KST).date()
+        popular = ('새빛테크, 해외 공급계약 체결', 'https://example.com/popular', 14020)
+        ordinary = ('삼성전자 반도체 양산 수주 신제품 공개', 'https://example.com/ordinary', 80)
+        with patch.object(news, 'fetch_popular_articles', return_value=[popular]), patch.object(news, 'fetch_articles', return_value=[ordinary]):
+            with patch.object(news, 'get_article_date', return_value=today):
+                self.assertEqual(news.pick_best_article([]), popular[:2])
+            with patch.object(news, 'get_article_date', side_effect=[today - news.timedelta(days=1), today]):
+                self.assertEqual(news.pick_best_article([]), ordinary[:2])
+            with patch.object(news, 'get_article_date', return_value=None):
+                self.assertIsNone(news.pick_best_article([]))
 
 
 if __name__ == '__main__':

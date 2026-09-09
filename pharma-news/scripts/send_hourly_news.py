@@ -7,7 +7,7 @@ from html import escape
 from urllib.parse import urlparse, urljoin
 from datetime import datetime, timezone, timedelta
 
-# 90분마다 실행되므로 최근에 이미 보낸 기사는 다시 보내지 않도록 이력을 저장한다.
+# 매시간 실행되므로 최근에 이미 보낸 기사는 다시 보내지 않도록 이력을 저장한다.
 SENT_LOG_PATH = os.path.join(
     os.path.dirname(__file__), "..", "..", "data", "hourly_sent_log.json"
 )
@@ -18,6 +18,13 @@ HEADERS = {
 }
 
 KST = timezone(timedelta(hours=9))
+RANKING_URL = "https://news.naver.com/main/ranking/popularDay.naver"
+# 경제·산업 전문 매체의 현재 많이 본 뉴스에서 기업 이벤트를 선별한다.
+BUSINESS_PRESS = {"009", "015", "011", "014", "018", "277", "016", "008", "366", "030", "092"}
+
+
+def in_send_window(now):
+    return 8 <= now.astimezone(KST).hour < 17
 
 # 상품 홍보·수익률 경쟁은 기업 이벤트와 구분해 제외한다(대소문자 무관).
 PRODUCT_KEYWORDS = [
@@ -121,6 +128,9 @@ def get_article_date(url):
     try:
         res = requests.get(url, headers=HEADERS, timeout=8)
         soup = BeautifulSoup(res.text, "html.parser")
+        published = soup.select_one("._ARTICLE_DATE_TIME[data-date-time]")
+        if published:
+            return datetime.fromisoformat(published["data-date-time"]).date()
         for prop in ["article:published_time", "og:regDate", "og:pub_date", "datePublished"]:
             tag = soup.find("meta", property=prop) or soup.find("meta", attrs={"name": prop})
             if tag and tag.get("content"):
@@ -333,8 +343,42 @@ def save_sent_titles(sent_titles, newly_sent_title):
     with open(SENT_LOG_PATH, "w", encoding="utf-8") as f:
         json.dump(updated, f, ensure_ascii=False, indent=2)
 
+def fetch_popular_articles():
+    """실행 시점의 매체별 인기 순위이며 전체 매체 통합 순위는 아니다."""
+    articles = []
+    try:
+        res = requests.get(RANKING_URL, headers=HEADERS, timeout=10)
+        res.raise_for_status()
+        # 레거시 랭킹 페이지는 EUC-KR로 제공된다.
+        res.encoding = "euc-kr"
+        soup = BeautifulSoup(res.text, "html.parser")
+        for item in soup.select('.rankingnews_box .rankingnews_list > li'):
+            link = item.select_one('a.list_title')
+            rank_tag = item.select_one('.list_ranking_num')
+            if not link or not rank_tag:
+                continue
+            url = link.get('href', '')
+            parsed = urlparse(url)
+            match = re.fullmatch(r'/(?:mnews/)?article/(\d+)/(\d+)', parsed.path)
+            if parsed.hostname != 'n.news.naver.com' or not match or match[1] not in BUSINESS_PRESS:
+                continue
+            title = clean_title(link.get_text(' ', strip=True))
+            if is_invalid(title) or not has_company_event(title):
+                continue
+            rank_match = re.search(r'\d+', rank_tag.get_text())
+            if not rank_match or not 1 <= int(rank_match[0]) <= 5:
+                continue
+            rank = int(rank_match[0])
+            articles.append((title, 'https://n.news.naver.com' + parsed.path,
+                             10000 + (6 - rank) * 1000 + get_priority(title)))
+    except (requests.RequestException, ValueError) as exc:
+        print(f"인기 기사 수집 실패: {type(exc).__name__}; 일반 기업 뉴스로 대체합니다.")
+    return articles
+
+
 def pick_best_article(sent_titles):
-    all_articles = []
+    # 매 실행마다 갱신된 인기 목록을 먼저 넣어 같은 제목의 일반 기사보다 우선한다.
+    all_articles = fetch_popular_articles()
     all_articles += fetch_articles("https://news.naver.com/breakingnews/section/101/258", "https://news.naver.com", "article")
     all_articles += fetch_articles("https://news.naver.com/breakingnews/section/101/261", "https://news.naver.com", "article")
     all_articles += fetch_articles("https://www.fnnews.com/section/002001000", "https://www.fnnews.com")
@@ -361,7 +405,7 @@ def pick_best_article(sent_titles):
         # 섹션 목록 페이지엔 전날 기사가 계속 걸려있는 경우가 있어,
         # 실제 발행일을 확인해 오늘 기사가 아니면 건너뛴다.
         pub_date = get_article_date(url)
-        if pub_date is not None and pub_date != today:
+        if pub_date != today:
             continue
         return title, url
 
@@ -390,7 +434,7 @@ def send_telegram(message):
 
 if __name__ == "__main__":
     # 늦어진 예약 실행은 야간에 보내지 않는다. 수동 실행은 즉시 전송한다.
-    if os.environ.get("GITHUB_EVENT_NAME") == "schedule" and not 9 <= datetime.now(KST).hour < 22:
+    if os.environ.get("GITHUB_EVENT_NAME") == "schedule" and not in_send_window(datetime.now(KST)):
         print("발송 시간대가 지나 이번 회차는 건너뜁니다.")
         raise SystemExit(0)
     print("뉴스 수집 중...")
