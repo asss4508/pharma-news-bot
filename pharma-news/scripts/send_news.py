@@ -206,19 +206,19 @@ def fetch_pharmnews(limit=3):
 def build_message(yakup_news, pharmnews_news):
     now = datetime.now(KST)
     weekday = WEEKDAYS[now.weekday()]
-    header = now.strftime("%Y년 %m월 %d일") + "(" + weekday + ") Daily News"
+    header = "<b>제약·바이오 모닝 브리핑</b>\n" + now.strftime("%Y.%m.%d") + " (" + weekday + ")"
     msg = header + "\n\n"
     all_news = yakup_news + pharmnews_news
     if not all_news:
-        msg += "오늘 제약·바이오 기사가 없습니다."
+        msg += "이번 회차에 수집된 제약·바이오 기사가 없습니다."
         return msg
     items = []
     for title, url in all_news:
         safe_title = html.escape(title)
         safe_url = html.escape(url, quote=True)
-        items.append('<a href="' + safe_url + '"><b><u>' + safe_title + '</u></b></a>')
+        items.append('· <a href="' + safe_url + '">' + safe_title + '</a>')
     msg += "\n\n".join(items)
-    msg += "\n\n* 위 내용은 국내외 언론사 뉴스 등을 인용한 자료로 별도의 승인절차 없이 제공합니다.\n\nhttps://t.me/bdragon0808\n한양증권 제약/바이오"
+    msg += '\n\n기사 제목을 누르면 원문으로 연결됩니다.\n참고 채널: <a href="https://t.me/bdragon0808">한양증권 제약·바이오</a>'
     return msg
 
 def send_telegram(message):

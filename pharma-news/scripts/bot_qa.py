@@ -292,6 +292,10 @@ def answer(question: str, bm25: BM25) -> str:
 - 자료에 근거한 내용만 답해줘. 자료에 없으면 명확히 없다고 말해줘.
 - 출처(파일명 또는 채널명)를 함께 표시해줘.
 - 한국어로 답해줘.
+- 첫 문단에서 질문에 대한 결론을 먼저 말하고, 이어서 필요한 근거를 짧은 문단으로 설명해줘.
+- 차분한 존댓말을 쓰고 과장, 반복, 불필요한 감탄사나 장식용 이모지는 피해주세요.
+- 수치와 기준일을 함께 제시하고, 과거 자료의 내용을 현재 사실로 단정하지 마.
+- 출처는 관련 설명 가까이에 표시하고, 자료에 없는 전망이나 투자 판단은 만들지 마.
 - **나 __ 같은 마크다운 강조 기호는 절대 사용하지 마. 텍스트만 써.
 - ## ### 같은 제목 기호도 쓰지 마.
 - 일반 텍스트로만 작성해줘.
@@ -458,20 +462,21 @@ async def on_question(update: Update, context: ContextTypes.DEFAULT_TYPE):
     bm25: BM25 = context.bot_data.get("bm25")
     if bm25 is None or bm25.n == 0:
         await update.message.reply_text(
-            "⚠️ 아직 인덱스가 없습니다.\n파일을 업로드하거나 채널 동기화를 먼저 실행해주세요."
+            "아직 검색할 자료가 없습니다.\n파일이나 참고할 채널 링크를 먼저 보내 주세요."
         )
         return
 
     if not ANTHROPIC_API_KEY:
-        await update.message.reply_text("❌ ANTHROPIC_API_KEY가 설정되지 않았습니다.")
+        await update.message.reply_text("답변 서비스 설정을 확인해야 합니다. 관리자에게 문의해 주세요.")
         return
 
-    status = await update.message.reply_text("🔍 검색 중...")
+    status = await update.message.reply_text("관련 자료를 확인하고 있습니다.")
     try:
         result = answer(text, bm25)
         await status.edit_text(result)
     except Exception as e:
-        await status.edit_text(f"❌ {type(e).__name__}: {str(e)[:200]}")
+        print(f"질문 답변 실패: {type(e).__name__}")
+        await status.edit_text("답변을 완료하지 못했습니다. 잠시 후 다시 질문해 주세요.")
 
 def fetch_index_from_github() -> list:
     # raw URL 사용 - Contents API의 1MB 용량 제한 없음
